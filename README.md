@@ -1,3 +1,3 @@
-# kly x11 distro
+# kly lxde distro
 
    
