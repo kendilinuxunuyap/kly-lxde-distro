@@ -29,9 +29,9 @@ initsetup()
 		filetype=$(file -b --extension $dowloadfile|cut -d'/' -f1)
 		
 		echo "***********dosya sıkıştırma türü**********:${filetype}"
-		if [ ${filetype} == "bz2" ]; then $target/bin/busybox tar -xvzf ${dowloadfile}; fi
-		if [ ${filetype} == "tar" ]; then $target/bin/busybox tar -xvzf ${dowloadfile}; fi
-		if [ ${filetype} == "xz" ]; then $target/bin/busybox tar -xvzf ${dowloadfile}; fi
+		if [ ${filetype} == "bz2" ]; then $target/bin/kly-tar -xvjf ${dowloadfile}; fi
+		if [ ${filetype} == "tar" ]; then $target/bin/kly-tar -xvf ${dowloadfile}; fi
+		if [ ${filetype} == "xz" ]; then $target/bin/kly-tar -xvJf ${dowloadfile}; fi
 		if [ "${filetype}" == "gz" ]; then echo "*****dosya gz ile sıkıştırılmış**"; 
 			mkdir -p tmpdir; 
 			$target/bin/busybox tar -xvzf ${dowloadfile} -C tmpdir;
@@ -87,7 +87,7 @@ packageindex()
 packagecompress() 
 {
 target="";if [ -n "$1}" ];then target="$1"; else target="/";fi
-chown -R 0:0 $target/tmp/kly/build/rootfs-${name}-${version}
+#chown -R 0:0 $target/tmp/kly/build/rootfs-${name}-${version}
 cd $target/tmp/kly/build/rootfs-${name}-${version}
 $target/bin/busybox tar -cf ../rootfs.tar ./*
 cd $target/tmp/kly/build/
