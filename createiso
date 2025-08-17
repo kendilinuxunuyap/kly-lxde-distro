@@ -106,6 +106,12 @@ do
 chroot $rootfs /bin/kly -ri $paket; 
 done
 
+
+for paket in lightdm libgcrypt libgpg-error lightdm-gtk-greeter
+do
+chroot $rootfs /bin/kly -ri $paket; 
+done
+
 ### user add and passwd
 chroot $rootfs echo -e "1\n1\n"|chroot $rootfs passwd root
 chroot $rootfs useradd live -m -s /bin/sh -d /home/live
